@@ -1,0 +1,318 @@
+
+create database library;
+use library;
+
+-- Creating students table --
+create table students(
+studentID int NOT NULL IDENTITY(1, 1) Primary Key,
+first_name varchar(65),
+last_name varchar(65),
+birthdate Date,
+gender varchar(7),
+class varchar(10));
+
+-- Creating Authors table --
+create table authors (
+authorID int NOT NULL IDENTITY(1, 1) primary key,
+first_name varchar(65),
+last_name varchar(65)
+);
+
+-- Creating genres tables --
+
+create table genres (
+typeID int NOT NULL IDENTITY(1, 1) primary key,
+name varchar(65));
+
+-- Creating books table --
+create table books (
+bookID int NOT NULL IDENTITY(1, 1)primary key,
+name varchar(100),
+page_count int,
+authorID int,
+typeID int,
+foreign key(authorID) references authors(authorID),
+foreign key (typeID) references genres(typeID)
+);
+
+-- Creating Borrows Table --
+create table borrows (
+borrowID int NOT NULL IDENTITY(1, 1) primary key,
+studentID int,
+bookID int,
+borrow_Date datetime, 
+return_Date datetime,
+foreign key(bookid) references books(bookID),
+foreign key(studentID) references students(studentID)
+);
+
+-- Inserting Authors Table --
+
+insert into authors (first_name,last_name) values ('William', 'Dean'),('Frederic','Brown'),('Jack', 'London'), ('Albert', 'Blaisdell'),('Ellis',' Butler'),('Arthur', 'Machen'),('Titus', 'Lucretius'),('Rabindranath', 'Tagore'),
+('Isaac','Asimov'), ('Charles', 'Dickens'),('Ralph Waldo', 'Emerson'),('Dorothy', 'Canfield'),('George', 'Orwell'),('Publius', 'Ovid'),('Robert Louis', 'Stevenson'),('Virginia', 'Woolf'),
+('George', 'Eliot'),('Amelia B.', 'Edwards'),('Fyodor', 'Dostoevsky'),('Emily', 'Dickinson'),('Edna', 'Dickinson'),('Edna', 'Ferber'),('Joseph Sheridan', 'LeFanu'),('John', 'DosPassos'),
+('Ruth', 'Stuart'),('Vladimir', 'Nabokov'),('Johanna', 'Spyri'),('Ernest', 'Dowson'),('Mary Hallock', 'Foote'),('Zane', 'Grey'),('H. P.', 'Lovecraft'),('Samuel', 'Pepys'),('Kate Dickinson', 'Sweetser'),
+('William', 'Lampton'),('Mother', 'Goose'),('Eleanor Hallowell', 'Abbott');
+
+
+-- Inserting Genres table --
+
+insert into genres (name) values ('Science fiction'),('Satire'),('Drama'),('Action and Adventure'),('Romance'),('Mystery'),('Horror'),('Health'),('Guide'),('Diaries'),('Comics'),
+('Journals'),('Biographies'),('Fantasy'),('History'),('Science'),('Art');
+
+
+-- Inserting into Students Table--
+
+insert into students (first_name,last_name,birthdate,gender,class) values ('Hazel','Green','1999-05-15','F','9B'),('Ashley','Marshall','1999-10-28','F','12D'),('Ansley','Green','2000-07-12','F','12B'),
+('Alcock','Chapman','1999-01-25','M','10C'),('Meadow','Taylor','1999-12-30','F','11B'),('Green','Wright','1999-03-09','M','10A'),('Paxton','Foster','1999-03-03','M','12B'),('Gray','King','1999-06-26','M','12D'),
+('Jones', 'Collins', '1999-01-26','M','11A'),('Leslie', 'Young', '1999-02-10','F','11C'),('Hailey', 'Hill', '2001-01-16','F','10C'), ('Washington','Martin','2001-05-23', 'M', '9C'),('Ramirez','Green','1999-08-28','M','11A'),
+('Morgan','Smith','2001-05-15','M','10C'),('Perez','Baker','1999-10-27','M','9C'), ('Alfie','Watson','2001-04-05','M','10C'), ('Madison','Jackson','2001-02-15','F','9E'),('Beverly','Moore','1999-11-19','F','9E'),('Kaden','Anderson','2000-11-11','M','9D'),
+ ('Carter','Adams','2000-07-08','M','11C'),('Ackland','Adams','2000-05-19','F','11C'),('Hadley','Parker','1999-11-21' ,'F','11C'),('Henderson','Cook','2001-08-06','M','9C'),('Wright','Young','2000-05-14','M','12E'),
+ ('Lindsey','Wilkinson','2000-10-08','F','10E'),('Wren','Chapman','2000-11-06','F','12A'),('Love','Chapman','2000-10-15','F','12B'), ('Wes','Bell','2001-01-25','M','9A'), ('Tyler','Carter','2001-08-24','M','11C'),
+  ('Edwin','Cook','2000-08-17','M','10C'), ('Sally','Wood', '1999-06-07','F','12D'),('Nelson','Smith','1999-11-15','M','12D'),('Arabelle','Brown','2000-03-11','F','11C'),('Carter','Harrison','2000-11-30', 'M', '10D'),
+('Baker','Bell','2000-03-24','M','11E'),('Cherish','Cooper','1999-01-31','F','10C'), ('Remington','Wright', '1999-08-14', 'M','9B'),('Edwards','King','1999-02-01','M','9C'),('Harleigh', 'Taylor', '1999-05-05','F','10D'),
+('Ryleigh','Clark','1999-10-29','F','10A'), ('Albert','Richardson', '2000-03-19' ,'F','9B'), ('Lee','Ward','1999-05-13','M','12E'),('Kaylin','Bell', '1999-09-12','F','9B'),('Agard','Young', '2000-04-03','F','12A'),
+('Turner','Hall','2000-01-07','M','9B'),('Akes','White', '2001-03-08','F','11A'), ('Lewis','Lee','2001-01-30','M','11E'),('Karson','Cook', '2001-06-26','M','11D'), ('Hayden','Young','1999-12-15','M','9A'),
+('Sterling','Shaw', '2000-06-24', 'M', '12A');
+
+
+insert into students (first_name,last_name,birthdate,gender,class) values ('Rylan','Wright', '2000-02-06','M', '12B'),('Abbott', 'Hill', '1999-01-05', 'F', '11E'),
+('Alcock','Turner', '2000-09-30', 'F', '10A'),( 'Simmons','Davis','1999-03-30', 'M', '10C'),('Jennifer', 'Moore', '1999-11-01','F', '9B'),
+('Reed','Ward', '1999-11-14', 'M', '9E'),('Adley', 'Adams', '2000-05-31' , 'F', '11C'),('Ainley','Young','1999-01-31','F','11E'),
+('Ida','Gray', '1999-11-30', 'F', '10E'),('Alice','Wood', '2000-04-05', 'F', '12C'),('Kim','Marshall', '2000-08-04' ,'F','9D'),
+('Ainsley','Cooper', '2000-10-13', 'F', '9A'),('Josephine','Bell', '2000-05-25', 'F', '11E'),('Ronald','Lee', '2000-05-12','M','12D'), 
+('Harlee','Foster', '2000-01-23' ,'F', '9E'),('Kaelyn','Chapman', '1999-07-02','F','12D'),('Dev','Davis', '2001-02-22' ,'M','10D'),
+('Honey', 'Corbyn', '1999-08-02', 'F', '11D'),('Crosby','Cook', '2001-08-22','M','11B'),('Jaxon','Walker', '2000-06-28', 'M','9A'),
+('Alberts','Cox', '2000-08-24','F','9A'), ('Daxton','Smith','2000-05-27','M','12C'),('Braden', 'Carter','1999-03-15', 'M', '11E'),
+('Johnson','Baker', '1999-07-05', 'M', '9A'),('Addison','Adams', '2001-03-04', 'F', '9D'),('Dalton','Harris', '1999-12-19', 'M', '10C'),
+('Chance','Johnson', '1999-09-20', 'M','11A'),('Ailes','Wright','2001-04-20', 'F', '9B'),('Bryant','Chapman', '2001-03-11','M','10A'),
+('Maverick','Young', '2000-04-03' , 'M', '9E'),('Acomb','Collins', '1999-04-24','F','10B'),
+('Reed','Johnson', '2000-04-01' ,'M','11C'), ('Akes','Turner', '2000-09-10' , 'F','9C'),('Rylan','Wilkinson', '2000-06-30' , 'M', '12D'),
+ ('Miller','Wilkinson', '2000-11-24' ,'M','9A'),('Adley','Collins', '2001-09-14' ,'F','9E'),('Nelson','Harrison', '2001-06-04','M','10E'),
+('Daisy','Taylor', '2000-06-15','F','9A'), ('Lewis','Young', '1999-03-14','M','11A'),('Moore','Brown','1999-11-30', 'M', '12C'),('Colton', 'Ward', '1999-11-19' , 'M', '12D'),
+('Harvey','Hill', '1999-11-15' ,'M','12C'),('Kaden','Lee', '2001-04-18' ,'M','9D'),('Walker','Hall','1999-03-17' ,'M','11B'),
+('Preston','White', '2000-03-06','M','12B'),('Walker','Green', '2001-01-01' ,'M', '9D'),('Brooklynn','Carter', '2000-04-17', 'F','9C'),
+('Brennan','King', '2000-11-05' ,'M','10E'),('James', 'Watson', '2000-07-13', 'M','11C');
+
+
+
+
+--Inserting into books table--
+
+insert into books (name,page_count,authorID,typeID) values ('A Daughter of the Snows', 199,3, 9),('The Near East: 10,000 Years of History', 298, 9, 13),('The Cocoon: A Rest-Cure Comedy', 90,25, 12),('The Freakshow Murders', 321, 2, 3),('Pharaohs, Fellahs and Explorers', 367, 19, 9),('Hard Times', 293, 10, 1),('A Modern Instance', 222, 1, 12),('The Real Mother Goose', 88, 35, 1),('Children of Blood and Bone', 137, 7, 13),('A pushcart at the curb', 95, 24, 1),('The Desert and the Sown', 126, 29, 10),('Three Soldiers', 223, 24, 16),('The End of Eternity', 168, 9, 1),('Annie Kilburn', 291, 1, 12),('A Touch of Sun and Other Stories', 141, 29, 9),('Broken Ties', 134, 8, 5),('Short Stories From American History', 305, 4, 8),('Mrs Rosie and the Priest', 104, 13, 14),('So Big', 209, 22, 3),('Monsieur Maurice', 92, 19, 8),('The Master of Ballantrae', 236,16, 13),('The Unlived Life of Little Mary Ellen', 99, 25, 6),('Mouse-The Last Train', 184, 2, 14),('Edith Bonham', 122, 29, 7),
+('Maybe Mother Goose', 161, 35, 14),('The Noble Gases', 321, 9, 5),('Rainy Week', 98, 36, 7),('A Hazard of New Fortunes', 144, 1, 4),('A Plot for Murder', 108, 2, 13),('Nature', 357, 11, 8),('Hickory Dickory Dock', 326, 35, 6),('Big Fat Hen', 232, 35, 12),('The Lone Star Ranger', 328, 30, 9),('The Great Fire of London', 252, 32, 9),('White Nights', 265, 20, 14),('In a Glass Darkly', 173, 23, 9),('Fanny herself', 248, 22, 10),('Loaded', 273, 2, 4),('A Foregone Conclusion', 121, 1, 15),('The Hill of Dreams', 175, 6, 6),('Adventure', 217, 3, 8),('A Tagore Reader', 285, 8, 4),('A Tale of Two Cities', 331, 10, 13),('Dombey and Son', 344, 10, 14),('Famous Women', 273, 13, 1),('Rejection, The Ruling Spirit',358, 5, 2),('Little Dorrit', 314, 10, 13),('The Four-Fifteen Express', 201, 19, 2),('Fairy Prince and Other Stories', 306, 36, 15),('Ten Tales from the Decameron', 183, 13, 5),('The Double', 372, 20, 17),('A Flight Of Swans', 115, 8, 8),
+('The Phantom Coach', 243, 19, 17),('The Game', 209, 3, 10),('Rico and Wiseli', 309, 27, 8),('The Shorter Pepys', 276, 32, 5),('My Life Had Stood a Loaded Gun', 278, 21, 12),
+('A Tagore Testament', 268, 8, 15),('The Cruise of the Dazzler', 140, 3, 10),('To the Lighthouse', 90, 17, 2),('The Sick-a-Bed Lady', 369, 36, 9),('Christmas Every Day', 98, 1, 13),
+('The home-maker', 316, 12, 14),('The Ground-Swell', 193, 29, 10),('A Sleep and a Forgetting', 360, 1, 2),('Nicholas Nickleby', 219, 10, 1),('The Whole Family: A Novel by Twelve Authors', 149, 1, 6),
+('Middlemarch', 288, 18, 11),('Life of Dante', 156, 13, 14),('Short Stories From English History', 189, 4, 2),('Little Eve Edgarton', 306, 36, 5),('The Kingdom of the Sun', 189, 9, 9),
+  ('Indian Summer', 107, 1, 14),('Mrs Dalloway', 321, 17, 5),('Demons', 232, 20, 15),('The Last Trail', 116, 30, 14),('The Fredric Brown Megapack', 324, 2, 16),('The Decameron: Selected Tales', 337, 13, 17),
+  ('The bent twig', 367, 12, 3),('Things near and far', 199, 6, 6),('The Story of Salome', 316, 19, 11),('The Destruction of Our Children', 104, 5, 9),('Collected Stories', 295, 8, 4),
+('The House of the Dead', 209, 20, 2),('Sonny: A Christmas Guest', 186, 25, 6),('Amores', 297,15, 10),('Chaturanga', 218, 8, 10),('Little Eve Edgarton', 247, 36, 14),('Chitra', 122, 8, 9),('The Iron Heel', 81, 3, 15),
+('The Great God Pan And The Hill Of Dreams', 158, 6, 5),('The White People and Other Weird Stories', 100, 6, 15),('The Diary of Samuel Pepys: A Selection', 271, 32, 3);
+
+insert into books (name,page_count,authorID,typeID) values ('Honeymoon in Hell', 202, 2, 16),('The Black Arrow', 366, 16, 12),('David Copperfield', 240, 10, 16),
+('Famous Ghost Stories', 152, 6, 3),('Book Of Indian Braves', 117, 33, 8), ('Binodini', 306, 8, 8),('Holly And Pizen, And Other Stories', 220, 25, 17),('Lolita', 153, 26, 2),
+('The Best Short Stories', 115, 20, 2), ('Cimarron', 101, 22, 17);
+
+--Inserting into Borrows table --
+
+insert into borrows (studentID,bookID,borrow_Date,return_Date) VALUES (1, 1, CAST('2015-08-09 13:26:00.000' AS DateTime), CAST('2015-08-20 06:59:00.000' AS DateTime))
+,( 2, 2, CAST(N'2015-08-10 19:44:00.000' AS DateTime), CAST(N'2015-08-15 10:46:00.000' AS DateTime)),(3, 3,'2015-08-10 22:05:00.000','2015-08-19 17:28:00.000'), (4, 4, CAST(N'2015-08-11 02:32:00.000' AS DateTime), CAST(N'2015-08-17 15:12:00.000' AS DateTime)),
+(5, 5, CAST(N'2015-08-12 12:05:00.000' AS DateTime), CAST(N'2015-08-21 07:16:00.000' AS DateTime)),(6, 6, CAST(N'2015-08-12 12:25:00.000' AS DateTime), CAST(N'2015-08-18 04:33:00.000' AS DateTime)),
+(7, 7, CAST(N'2015-08-13 13:51:00.000' AS DateTime), CAST(N'2015-08-20 09:27:00.000' AS DateTime)),( 8, 8, CAST(N'2015-08-13 15:58:00.000' AS DateTime), CAST(N'2015-08-19 23:10:00.000' AS DateTime)),
+(9, 9, CAST(N'2015-08-18 09:27:00.000' AS DateTime), CAST(N'2015-08-28 12:48:00.000' AS DateTime)),(10, 10, CAST(N'2015-08-19 22:11:00.000' AS DateTime), CAST(N'2015-09-08 06:28:00.000' AS DateTime)),
+(11, 11, CAST(N'2015-08-21 16:39:00.000' AS DateTime), CAST(N'2015-08-29 00:28:00.000' AS DateTime)),(12, 12, CAST(N'2015-08-21 22:13:00.000' AS DateTime), CAST(N'2015-09-02 00:17:00.000' AS DateTime)),
+(13, 13, CAST(N'2015-08-23 16:58:00.000' AS DateTime), CAST(N'2015-08-28 11:27:00.000' AS DateTime)),(14, 14, CAST(N'2015-08-24 20:06:00.000' AS DateTime), CAST(N'2015-09-02 21:56:00.000' AS DateTime)),
+(15, 15, CAST(N'2015-08-24 21:59:00.000' AS DateTime), CAST(N'2015-09-05 16:29:00.000' AS DateTime)),(16, 16, CAST(N'2015-08-25 00:22:00.000' AS DateTime), CAST(N'2015-08-28 19:06:00.000' AS DateTime)),
+(17, 17, CAST(N'2015-08-25 12:12:00.000' AS DateTime), CAST(N'2015-09-05 10:26:00.000' AS DateTime)),(18, 18, CAST(N'2015-08-28 19:57:00.000' AS DateTime), CAST(N'2015-09-05 10:39:00.000' AS DateTime)),
+(19, 19, CAST(N'2015-08-30 00:37:00.000' AS DateTime), CAST(N'2015-09-18 08:46:00.000' AS DateTime)),(20, 20, CAST(N'2015-08-30 18:51:00.000' AS DateTime), CAST(N'2015-09-04 03:32:00.000' AS DateTime)),
+(21, 21, CAST(N'2015-08-31 04:30:00.000' AS DateTime), CAST(N'2015-09-17 00:15:00.000' AS DateTime)),(22, 22, CAST(N'2015-08-31 14:11:00.000' AS DateTime), CAST(N'2015-09-17 23:38:00.000' AS DateTime)),
+(23, 23, CAST(N'2015-09-01 16:59:00.000' AS DateTime), CAST(N'2015-09-12 06:07:00.000' AS DateTime)),(24, 24, CAST(N'2015-09-01 19:43:00.000' AS DateTime), CAST(N'2015-09-04 01:57:00.000' AS DateTime)),
+(25, 25, CAST(N'2015-09-01 23:23:00.000' AS DateTime), CAST(N'2015-09-19 19:52:00.000' AS DateTime)),( 26, 26, CAST(N'2015-09-03 13:37:00.000' AS DateTime), CAST(N'2015-09-20 07:56:00.000' AS DateTime)),
+(27, 27, CAST(N'2015-09-05 07:19:00.000' AS DateTime), CAST(N'2015-09-20 03:55:00.000' AS DateTime)),(28, 28, CAST(N'2015-09-05 14:32:00.000' AS DateTime), CAST(N'2015-09-16 04:40:00.000' AS DateTime)),
+(29, 29, CAST(N'2015-09-05 19:41:00.000' AS DateTime), CAST(N'2015-09-10 17:03:00.000' AS DateTime)),(30, 30, CAST(N'2015-09-05 21:37:00.000' AS DateTime), CAST(N'2015-09-22 16:38:00.000' AS DateTime)),
+(31, 31, CAST(N'2015-09-06 05:03:00.000' AS DateTime), CAST(N'2015-09-18 11:32:00.000' AS DateTime)),(32, 32, CAST(N'2015-09-06 16:51:00.000' AS DateTime), CAST(N'2015-09-17 22:16:00.000' AS DateTime)),
+(33, 33, CAST(N'2015-09-07 16:16:00.000' AS DateTime), CAST(N'2015-09-17 14:53:00.000' AS DateTime)),(34, 34, CAST(N'2015-09-08 02:42:00.000' AS DateTime), CAST(N'2015-09-24 19:18:00.000' AS DateTime)),
+(35, 35, CAST(N'2015-09-08 23:12:00.000' AS DateTime), CAST(N'2015-09-25 17:52:00.000' AS DateTime)),(36, 36, CAST(N'2015-09-10 11:58:00.000' AS DateTime), CAST(N'2015-09-27 21:18:00.000' AS DateTime)),
+(37, 37, CAST(N'2015-09-10 23:10:00.000' AS DateTime), CAST(N'2015-09-30 10:28:00.000' AS DateTime)),(38, 38, CAST(N'2015-09-12 05:02:00.000' AS DateTime), CAST(N'2015-09-17 04:43:00.000' AS DateTime)),
+(39, 39, CAST(N'2015-09-12 10:53:00.000' AS DateTime), CAST(N'2015-09-13 05:45:00.000' AS DateTime)),(40, 40, CAST(N'2015-09-14 03:20:00.000' AS DateTime), CAST(N'2015-09-24 04:43:00.000' AS DateTime)),
+(41, 41, CAST(N'2015-09-14 09:25:00.000' AS DateTime), CAST(N'2015-09-17 09:36:00.000' AS DateTime)),(42, 42, CAST(N'2015-09-14 18:45:00.000' AS DateTime), CAST(N'2015-09-22 01:27:00.000' AS DateTime)),
+(43,43, CAST(N'2015-09-16 00:58:00.000' AS DateTime), CAST(N'2015-09-23 21:12:00.000' AS DateTime)),(44, 44, CAST(N'2015-09-16 02:28:00.000' AS DateTime), CAST(N'2015-10-04 02:48:00.000' AS DateTime)),
+(45, 45, CAST(N'2015-09-18 22:48:00.000' AS DateTime), CAST(N'2015-10-08 22:32:00.000' AS DateTime)),(46, 46, CAST(N'2015-09-21 11:30:00.000' AS DateTime), CAST(N'2015-10-10 11:51:00.000' AS DateTime)),
+(47, 47, CAST(N'2015-09-23 13:46:00.000' AS DateTime), CAST(N'2015-09-28 12:01:00.000' AS DateTime)),(48, 48, CAST(N'2015-09-25 11:34:00.000' AS DateTime), CAST(N'2015-10-04 02:21:00.000' AS DateTime)),
+(49, 49, CAST(N'2015-09-25 16:17:00.000' AS DateTime), CAST(N'2015-09-27 03:26:00.000' AS DateTime)),(50, 50, CAST(N'2015-09-27 00:47:00.000' AS DateTime), CAST(N'2015-09-27 09:37:00.000' AS DateTime))
+,
+(51, 51, CAST(N'2015-09-28 03:49:00.000' AS DateTime), CAST(N'2015-10-12 06:25:00.000' AS DateTime)),(52, 52, CAST(N'2015-09-28 07:03:00.000' AS DateTime), CAST(N'2015-10-12 12:45:00.000' AS DateTime)),
+(53, 53, CAST(N'2015-09-29 04:43:00.000' AS DateTime), CAST(N'2015-09-29 10:18:00.000' AS DateTime)),(54,54, CAST(N'2015-09-29 21:35:00.000' AS DateTime), CAST(N'2015-10-08 14:24:00.000' AS DateTime)),
+(55, 55, CAST(N'2015-10-01 05:48:00.000' AS DateTime), CAST(N'2015-10-17 11:44:00.000' AS DateTime)),(56, 56, CAST(N'2015-10-01 09:41:00.000' AS DateTime), CAST(N'2015-10-01 14:29:00.000' AS DateTime)),
+(57, 57, CAST(N'2015-10-01 11:42:00.000' AS DateTime), CAST(N'2015-10-08 08:30:00.000' AS DateTime)),(58, 58, CAST(N'2015-10-01 11:43:00.000' AS DateTime), CAST(N'2015-10-10 17:59:00.000' AS DateTime)),
+(59, 59, CAST(N'2015-10-01 11:50:00.000' AS DateTime), CAST(N'2015-10-16 19:08:00.000' AS DateTime)),(60, 60, CAST(N'2015-10-01 12:07:00.000' AS DateTime), CAST(N'2015-10-16 09:38:00.000' AS DateTime)),
+(61, 61, CAST(N'2015-10-01 12:54:00.000' AS DateTime), CAST(N'2015-10-02 08:01:00.000' AS DateTime)),(62, 62, CAST(N'2015-10-01 13:52:00.000' AS DateTime), CAST(N'2015-10-03 15:32:00.000' AS DateTime)),
+(63, 63, CAST(N'2015-10-01 14:04:00.000' AS DateTime), CAST(N'2015-10-05 16:35:00.000' AS DateTime)),(64, 64, CAST(N'2015-10-01 14:13:00.000' AS DateTime), CAST(N'2015-10-08 12:36:00.000' AS DateTime)),
+(65, 65, CAST(N'2015-10-01 14:28:00.000' AS DateTime), CAST(N'2015-10-07 11:22:00.000' AS DateTime)),(66, 66, CAST(N'2015-10-01 15:44:00.000' AS DateTime), CAST(N'2015-10-17 10:24:00.000' AS DateTime)),
+(67, 67, CAST(N'2015-10-01 15:56:00.000' AS DateTime), CAST(N'2015-10-20 16:24:00.000' AS DateTime)),(68, 68, CAST(N'2015-10-01 16:33:00.000' AS DateTime), CAST(N'2015-10-09 12:31:00.000' AS DateTime)),
+(69, 69, CAST(N'2015-10-01 16:53:00.000' AS DateTime), CAST(N'2015-10-08 18:30:00.000' AS DateTime)),(70, 70, CAST(N'2015-10-01 17:08:00.000' AS DateTime), CAST(N'2015-10-10 18:36:00.000' AS DateTime)),
+(71, 71, CAST(N'2015-10-01 18:34:00.000' AS DateTime), CAST(N'2015-10-21 11:39:00.000' AS DateTime)),(72, 72, CAST(N'2015-10-01 18:38:00.000' AS DateTime), CAST(N'2015-10-06 19:17:00.000' AS DateTime)),
+(73, 73, CAST(N'2015-10-01 18:42:00.000' AS DateTime), CAST(N'2015-10-06 11:42:00.000' AS DateTime)),(74, 74, CAST(N'2015-10-01 19:07:00.000' AS DateTime), CAST(N'2015-10-08 15:00:00.000' AS DateTime)),
+(75, 75, CAST(N'2015-10-01 19:22:00.000' AS DateTime), CAST(N'2015-10-19 18:23:00.000' AS DateTime)),(76, 76, CAST(N'2015-10-02 08:08:00.000' AS DateTime), CAST(N'2015-10-09 19:54:00.000' AS DateTime)),
+(77, 77, CAST(N'2015-10-02 10:01:00.000' AS DateTime), CAST(N'2015-10-14 18:11:00.000' AS DateTime)),(78, 78, CAST(N'2015-10-02 10:17:00.000' AS DateTime), CAST(N'2015-10-22 09:41:00.000' AS DateTime)),
+(79, 79, CAST(N'2015-10-02 10:45:00.000' AS DateTime), CAST(N'2015-10-10 17:16:00.000' AS DateTime)),(80, 80, CAST(N'2015-10-02 12:23:00.000' AS DateTime), CAST(N'2015-10-16 17:33:00.000' AS DateTime)),
+(81, 81, CAST(N'2015-10-02 13:22:00.000' AS DateTime), CAST(N'2015-10-07 19:01:00.000' AS DateTime)),(82, 82, CAST(N'2015-10-02 15:32:00.000' AS DateTime), CAST(N'2015-10-19 09:02:00.000' AS DateTime)),
+(83, 83, CAST(N'2015-10-02 16:29:00.000' AS DateTime), CAST(N'2015-10-09 11:27:00.000' AS DateTime)),(84, 84, CAST(N'2015-10-02 16:52:00.000' AS DateTime), CAST(N'2015-10-09 18:22:00.000' AS DateTime)),
+(85, 85, CAST(N'2015-10-02 17:48:00.000' AS DateTime), CAST(N'2015-10-09 14:25:00.000' AS DateTime)),(86, 86, CAST(N'2015-10-02 18:56:00.000' AS DateTime), CAST(N'2015-10-07 17:17:00.000' AS DateTime)),
+(87, 87, CAST(N'2015-10-02 19:18:00.000' AS DateTime), CAST(N'2015-10-02 19:59:00.000' AS DateTime)),(88, 88, CAST(N'2015-10-02 19:46:00.000' AS DateTime), CAST(N'2015-10-07 16:52:00.000' AS DateTime)),
+(89, 89, CAST(N'2015-10-02 19:54:00.000' AS DateTime), CAST(N'2015-10-19 18:12:00.000' AS DateTime)),(90, 90, CAST(N'2015-10-03 08:51:00.000' AS DateTime), CAST(N'2015-10-14 16:32:00.000' AS DateTime)),
+(91, 91, CAST(N'2015-10-03 09:00:00.000' AS DateTime), CAST(N'2015-10-05 16:57:00.000' AS DateTime)),(92, 92, CAST(N'2015-10-03 09:07:00.000' AS DateTime), CAST(N'2015-10-19 13:18:00.000' AS DateTime)),
+(93, 93, CAST(N'2015-10-03 09:09:00.000' AS DateTime), CAST(N'2015-10-03 14:14:00.000' AS DateTime)),(94, 94, CAST(N'2015-10-03 10:24:00.000' AS DateTime), CAST(N'2015-10-13 17:34:00.000' AS DateTime)),
+(95, 95, CAST(N'2015-10-03 12:00:00.000' AS DateTime), CAST(N'2015-10-20 14:04:00.000' AS DateTime)),(96, 96, CAST(N'2015-10-03 12:10:00.000' AS DateTime), CAST(N'2015-10-09 18:16:00.000' AS DateTime)),
+(97, 97, CAST(N'2015-10-03 12:24:00.000' AS DateTime), CAST(N'2015-10-15 09:54:00.000' AS DateTime)),(98, 98, CAST(N'2015-10-03 13:11:00.000' AS DateTime), CAST(N'2015-10-10 08:36:00.000' AS DateTime)),
+(99, 99, CAST(N'2015-10-03 13:46:00.000' AS DateTime), CAST(N'2015-10-10 13:42:00.000' AS DateTime));
+
+-- Returns the book(s) and number of pages per a book --
+select b.name,b.page_count from books as b
+join authors on authors.authorID = b.authorID
+where authors.first_name = 'Vladimir';
+-- 1.--
+-- Number of Books by each author-
+
+
+select count(b.name) as 'Number of books',b.authorID, a.first_name,a.last_name from books as b
+join authors as a on b.authorID = a.authorID
+group by b.authorID,a.first_name,a.last_name;
+
+
+
+
+-- Returns the name of the student, name of the book the student rented and also the time it was taken--
+Select students.first_name,students.last_name,books.name,borrow_Date 
+       from students,borrows,books 
+       where students.studentID = borrows.studentID and 
+                  books.bookID = borrows.bookID;
+ 
+
+
+-- Search for students with the first name that starts with "L" --
+Select * from students 
+       where first_name like 'l%';
+ 
+
+-- Select all students who read a particular author --
+
+Select distinct students.* from students 
+join borrows on students.studentID = borrows.studentID
+join books on books.bookID = borrows.bookID
+join authors on authors.authorID = books.authorID 
+where authors.first_name = 'Fyodor' and authors.last_name = 'Dostoevsky';
+
+
+
+-- This will select the first and last name of the students and the number of books they read --
+Select first_name,last_name,count(*) as 'Books Read' 
+from students
+join borrows on students.studentID = borrows.studentID
+group by students.studentID,first_name,last_name
+order by 'Books Read' desc;
+
+
+-- This will select the amount of books by a particular author --
+Select count(*) from books 
+join authors on authors.authorID = books.authorID 
+where authors.first_name = 'Fyodor' and authors.last_name = 'Dostoevsky';
+
+
+-- This will select all the book titles, authors first and last name as well as the genre of each author --
+Select authors.first_name, authors.last_name, books.name as title from authors 
+join books on authors.authorID = books.authorID 
+join genres on genres.typeID = books.typeID
+where genres.name = 'Satire' or genres.name = 'Drama';
+
+
+-- This will combine all of tables. It will return the students full name, the authors full name, the date the book was borrowed, and the genre.--
+Select students.first_name as 'Student First Name',
+	   students.last_name as 'Student Last Name',books.name as Title,
+	   borrow_Date,genres.name as genre, 
+	   authors.first_name as 'Author First Name', authors.last_name as 'Author Last Name'
+from students 
+join borrows on students.studentID = borrows.studentID
+join books on books.bookID = borrows.bookID
+join genres on books.typeID = genres.typeID
+join authors on authors.authorID = books.authorID;
+
+
+-- This will return all of the books with less than 250 pages, as well as the first and last name of the author and title of the book --
+Select books.name as Title,page_count, authors.first_name as 'First Name', authors.last_name as 'Last Name'
+from authors 
+join books on authors.authorID = books.authorID
+where page_count <250
+order by page_count;
+
+-- Student views script which will return students with a first name that begins with a--
+go
+create view student_loc as
+select * from students where first_name like 'a%';
+
+select * from student_loc;
+
+-- Authors View Script which will return the authorid of 10--
+
+go
+create view author_info as 
+select * from authors where authorID = 10;
+
+select * from author_info
+
+-- Genres view Script which will return a list of all the genres starting with the letter "s" --
+
+go
+create view genre_info as
+select * from genres where name like  's%';
+
+select * from genre_info
+
+
+-- This view script for the books column will return all the students in class '10D' and the name of the book they're reading --
+go
+create view class_10_info as
+Select distinct students.*,books.name from students 
+join borrows on students.studentID = borrows.studentID
+join books on books.bookID = borrows.bookID
+join authors on authors.authorID = books.authorID
+where class = '10D'; 
+
+
+-- This View Script for the borrows table column will return the borrow date and the students first and last names order by the most recent date --
+go
+create view recent_rentals as
+select borrow_Date, b.studentID,s.first_name,s.last_name from borrows as b
+join students as s on s.studentID = b.studentID;
+ 
+
+-- This script will return the number of books written by all authors who have written more than one book ordered by the amount of books written --
+select count(b.name) as 'Number of books',a.authorID, a.first_name,a.last_name from books as b
+join authors as a on b.authorID = a.authorID
+group by a.authorID,a.first_name,a.last_name
+having count(b.name) >=2
+order by count(b.name) DESC;
+
+-- Creating function which will combine the first and last name from the students tables --
+CREATE FUNCTION full_name(
+   @first varchar(60),
+   @second varchar(60)
+)
+RETURNS varchar(60)
+AS 
+BEGIN
+    RETURN concat(@first,' ',@second);
+END;
+
+
+select authorID, dbo.full_name(first_name,last_name) as 'Full Name' from authors;
+select studentID, dbo.full_name(first_name,last_name) as 'Full Name' from students;
+
+-- Stored Procedure --
+create procedure find_book as
+select b.name,b.page_count,authors.first_name,authors.last_name from books as b
+join authors on authors.authorID = b.authorID
+where authors.first_name like 'a%';
+
+exec find_book;
